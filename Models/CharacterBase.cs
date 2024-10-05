@@ -1,4 +1,4 @@
-﻿using W6_assignment_template.Interfaces;
+using W6_assignment_template.Interfaces;
 
 namespace W6_assignment_template.Models
 {
@@ -8,6 +8,7 @@ namespace W6_assignment_template.Models
         public string Type { get; set; }
         public int Level { get; set; }
         public int HP { get; set; }
+        protected IRoom CurrentRoom { get; set; }
 
         protected CharacterBase(string name, string type, int level, int hp)
         {
@@ -15,9 +16,24 @@ namespace W6_assignment_template.Models
             Type = type;
             Level = level;
             HP = hp;
+        } 
+        
+        protected CharacterBase(string name, string type, int level, int hp, IRoom startingRoom)
+        {
+            Name = name;
+            Type = type;
+            Level = level;
+            HP = hp;
+            CurrentRoom = startingRoom;
         }
-
-        protected CharacterBase() { }
+        
+        public void MoveToRoom(IRoom room)
+        {
+            CurrentRoom = room;
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine($"{Name} has entered {CurrentRoom.Name}. {CurrentRoom.Description}");
+            Console.ResetColor();
+        }
 
         public void Attack(ICharacter target)
         {
