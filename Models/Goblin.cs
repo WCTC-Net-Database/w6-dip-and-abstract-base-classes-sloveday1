@@ -1,4 +1,6 @@
-﻿namespace W6_assignment_template.Models
+using W6_assignment_template.Interfaces;
+
+namespace W6_assignment_template.Models
 {
     public class Goblin : CharacterBase, ILootable
     {
@@ -14,10 +16,5 @@
         {
             throw new NotImplementedException();
         }
-    }
-
-    public interface ILootable
-    {
-        string Treasure { get; set; }
     }
 }
